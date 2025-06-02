@@ -17,9 +17,9 @@ let ft_rot_n n str =
                else -1 in
     if base = -1 then c
     else
-      let pos = (int_of_char c) - base in
-      let new_pos = (pos + n) mod 26 in
-      char_of_int (base + new_pos)
+      let pos = (int_of_char c) - base in  (* Get position 0-25 *)
+      let new_pos = (pos + n) mod 26 in    (* Rotate and wrap *)
+      char_of_int (base + new_pos)         (* Convert back to char *)
   in
   String.map rotate_char str
 
