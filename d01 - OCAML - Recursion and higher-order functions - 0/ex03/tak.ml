@@ -8,7 +8,7 @@
 
 (* Implements the Takeuchi function:
    tak(x,y,z) = tak(tak(x-1,y,z), tak(y-1,z,x), tak(z-1,x,y))  if y < x
-   tak(x,y,z) = z                                               otherwise *)
+   tak(x,y,z) = z                                              otherwise *)
 
 let rec tak x y z =
   if y >= x then z

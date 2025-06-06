@@ -2,7 +2,7 @@
 (*                                                                            *)
 (* repeat_x.ml                                                                *)
 (* Exercise 00: Repeat character 'x'                                          *)
-(* Allowed functions: None                                                   *)
+(* Allowed functions: None                                                    *)
 (*                                                                            *)
 (* ************************************************************************** *)
 
@@ -36,7 +36,7 @@ let () =
 (*                                                                            *)
 (* Compilation and execution instructions:                                    *)
 (*                                                                            *)
-(* $ ocamlopt repeat_x.ml -o repeat_x                                        *)
-(* $ ./repeat_x                                                              *)
+(* $ ocamlopt repeat_x.ml -o repeat_x                                         *)
+(* $ ./repeat_x                                                               *)
 (*                                                                            *)
 (* ************************************************************************** *) 
