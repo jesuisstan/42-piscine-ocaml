@@ -12,24 +12,23 @@
 let sequence n =
   let count_and_say s =
     let rec aux count curr acc = function
-      | [] -> string_of_int count ^ String.make 1 curr ^ acc
+      | [] -> acc ^ string_of_int count ^ String.make 1 curr
       | h :: t when h = curr -> aux (count + 1) curr acc t
-      | h :: t -> aux 1 h (string_of_int count ^ String.make 1 curr ^ acc) t
+      | h :: t -> aux 1 h (acc ^ string_of_int count ^ String.make 1 curr) t
     in
     match String.length s with
     | 0 -> ""
     | _ -> 
         let first = s.[0] in
         let chars = List.init (String.length s) (String.get s) in
-        String.concat "" [aux 1 first "" (List.tl chars)]
+        aux 1 first "" (List.tl chars)
   in
-  let rec generate_sequence i curr =
+  let rec generate_sequence i =
     if i <= 0 then ""
     else if i = 1 then "1"
-    else generate_sequence (i - 1) curr |> count_and_say
+    else count_and_say (generate_sequence (i - 1))
   in
-  if n <= 0 then ""
-  else generate_sequence n "1"
+  generate_sequence n
 
 let main () =
   print_endline "# Test cases:";

@@ -21,30 +21,35 @@ let encode lst =
   List.rev (encode_aux 0 [] lst)
 
 let main () =
-  let print_tuple (count, value) =
-    print_string ("(" ^ string_of_int count ^ ", ");
-    (match value with
-     | c when (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ->
-         print_string ("'" ^ String.make 1 c ^ "'")
-     | _ -> print_string (string_of_int value));
-    print_string ")"
+  let print_char_tuple (count, value) =
+    print_string ("(" ^ string_of_int count ^ ", '" ^ String.make 1 value ^ "')")
   in
-  let print_list l =
+  let print_int_tuple (count, value) =
+    print_string ("(" ^ string_of_int count ^ ", " ^ string_of_int value ^ ")")
+  in
+  let print_char_list l =
     print_string "[";
     List.iteri (fun i x ->
       if i > 0 then print_string "; ";
-      print_tuple x) l;
+      print_char_tuple x) l;
+    print_endline "]"
+  in
+  let print_int_list l =
+    print_string "[";
+    List.iteri (fun i x ->
+      if i > 0 then print_string "; ";
+      print_int_tuple x) l;
     print_endline "]"
   in
   print_endline "# Test cases:";
   print_string "encode [] = ";
-  print_list (encode []);
+  print_char_list (encode []);
   print_string "encode ['a'; 'a'; 'a'; 'b'; 'b'] = ";
-  print_list (encode ['a'; 'a'; 'a'; 'b'; 'b']);
+  print_char_list (encode ['a'; 'a'; 'a'; 'b'; 'b']);
   print_string "encode [1; 1; 1; 2; 2; 3] = ";
-  print_list (encode [1; 1; 1; 2; 2; 3]);
+  print_int_list (encode [1; 1; 1; 2; 2; 3]);
   print_string "encode ['x'] = ";
-  print_list (encode ['x'])
+  print_char_list (encode ['x'])
 
 let () = main ()
 

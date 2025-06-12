@@ -40,8 +40,13 @@ let string_of_nucleobase = function
   | None -> "None"
 
 let print_nucleotide n =
-  Printf.printf "{ phosphate = \"%s\"; deoxyribose = \"%s\"; base = %s }\n"
-    n.phosphate n.deoxyribose (string_of_nucleobase n.base)
+  print_string "{ phosphate = \"";
+  print_string n.phosphate;
+  print_string "\"; deoxyribose = \"";
+  print_string n.deoxyribose;
+  print_string "\"; base = ";
+  print_string (string_of_nucleobase n.base);
+  print_endline " }"
 
 let main () =
   print_endline "# Test cases:";

@@ -43,7 +43,11 @@ let main () =
   print_string "crossover [1; 2; 3; 4] [2; 4; 6] = ";
   print_int_list (crossover [1; 2; 3; 4] [2; 4; 6]);
   print_string "crossover ['a'; 'b'; 'c'] ['b'; 'd'; 'c'] = ";
-  print_char_list (crossover ['a'; 'b'; 'c'] ['b'; 'd'; 'c'])
+  print_char_list (crossover ['a'; 'b'; 'c'] ['b'; 'd'; 'c']);
+  print_string "crossover ['a'; 'b'; 'c'] ['a'; 'b'; 'c'] = ";
+  print_char_list (crossover ['a'; 'b'; 'c'] ['a'; 'b'; 'c']);
+  print_string "crossover ['a'; 'b'; 'c'] ['b'; 'b'; 'b'] = ";
+  print_char_list (crossover ['a'; 'b'; 'c'] ['b'; 'b'; 'b'])
 
 let () = main ()
 
