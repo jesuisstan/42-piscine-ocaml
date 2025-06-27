@@ -26,23 +26,50 @@ let examples_of_file filename =
   in
   loop []
 
-(* Test with provided CSV file *)
+let print_example_ocaml_tuple_with_header idx (arr, label) =
+  Printf.printf "EXAMPLE %d ------> \n" (idx + 1);
+  Printf.printf "([|";
+  Array.iteri (fun i x ->
+    if i > 0 then Printf.printf "; ";
+    Printf.printf "%g" x
+  ) arr;
+  Printf.printf "|], \"%s\")\n" label
+
 let () =
-  let file = "../attachment/ionosphere.train.csv" in
+  let usage () =
+    print_endline "Usage: ./examples_of_file <csv_file> [count]";
+    exit 1
+  in
+  let argc = Array.length Sys.argv in
+  if argc < 2 then usage ();
+  let file = Sys.argv.(1) in
   let examples = examples_of_file file in
-  Printf.printf "Read %d examples from %s\n" (List.length examples) file;
-  match examples with
-  | (arr, label) :: _ ->
-      Printf.printf "First example: label=%s, features=[|" label;
-      Array.iter (Printf.printf "%f;") arr;
-      Printf.printf "|]\n"
-  | [] -> Printf.printf "No examples found\n"
+  let total = List.length examples in
+  Printf.printf "Read %d examples from %s\n" total file;
+  if argc = 2 then (
+    List.iteri print_example_ocaml_tuple_with_header examples
+  ) else (
+    let count =
+      try int_of_string Sys.argv.(2)
+      with Failure _ ->
+        Printf.printf "Invalid count argument, printing only the first example.\n";
+        0
+    in
+    if count < 1 || count > total then (
+      Printf.printf "Invalid count argument, printing only the first example.\n";
+      match examples with
+      | ex :: _ -> print_example_ocaml_tuple_with_header 0 ex
+      | [] -> Printf.printf "No examples found\n"
+    ) else (
+      List.iteri (fun i ex -> if i < count then print_example_ocaml_tuple_with_header i ex) examples
+    )
+  )
 
 (* ************************************************************************** *)
 (*                                                                            *)
 (* Compilation and execution instructions:                                    *)
 (*                                                                            *)
 (* $ ocamlopt -o examples_of_file examples_of_file.ml                         *)
-(* $ ./examples_of_file ../attachment/ionosphere.train.csv                    *)
+(* $ ./examples_of_file ./attachment/ionosphere.train.csv                     *)
 (*                                                                            *)
-(* ************************************************************************** *) 
+(* ************************************************************************** *)

@@ -12,7 +12,7 @@ let () =
 (*                                                                            *)
 (* Compilation and execution instructions:                                    *)
 (*                                                                            *)
-(* $ ocamlopt -o micronap unix.cmxa micronap.ml                               *)
+(* $ ocamlopt -I +unix -o micronap unix.cmxa micronap.ml                      *)
 (* $ ./micronap 3                                                             *)
 (*                                                                            *)
 (* ************************************************************************** *) 

@@ -21,7 +21,7 @@ let () =
 (*                                                                            *)
 (* Compilation and execution instructions:                                    *)
 (*                                                                            *)
-(* $ ocamlopt -o jokes unix.cmxa jokes.ml                                     *)
+(* $ ocamlopt -I +unix -o jokes unix.cmxa jokes.ml                             *)
 (* $ ./jokes jokes.txt                                                        *)
 (*                                                                            *)
 (* ************************************************************************** *) 

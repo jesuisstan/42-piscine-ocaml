@@ -1,0 +1,5 @@
+Why did the OCaml developer refuse to use mutable state? Because he couldn't change his mind!
+Why do programmers prefer dark mode? Because light attracts bugs.
+Why did the function break up with the variable? Because it needed some space.
+Why was the recursion so good at hide and seek? Because it always knew where to call home.
+Why did the array go to therapy? Because it had too many issues with its bounds. 
