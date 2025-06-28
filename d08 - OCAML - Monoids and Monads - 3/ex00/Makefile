@@ -1,7 +1,9 @@
 NAME=ex00
 SRC=ex00.ml
 
-all:
+all: $(NAME)
+
+$(NAME): $(SRC)
 	ocamlopt $(SRC) -o $(NAME)
 
 clean:
@@ -9,4 +11,6 @@ clean:
 
 fclean: clean
 
-re: fclean all 
+re: fclean all
+
+.PHONY: all clean fclean re 
