@@ -10,19 +10,15 @@
    Prints each code separated by space, followed by newline *)
 
 let gray n =
-  let rec append_bits prefix = function
-    | [] -> []
-    | h :: t -> (prefix ^ h) :: append_bits prefix t
-  in
   let rec generate_gray n =
     if n <= 0 then [""]
     else
       let prev = generate_gray (n - 1) in
       let rec combine zeros ones = function
-        | [] -> zeros
+        | [] -> zeros @ ones
         | h :: t -> combine (("0" ^ h) :: zeros) (("1" ^ h) :: ones) t
       in
-      combine [] [] (List.rev prev)
+      combine [] [] prev
   in
   if n <= 0 then print_endline ""
   else
@@ -49,5 +45,13 @@ let () = main ()
 (*                                                                            *)
 (* $ ocamlopt gray.ml -o gray                                                *)
 (* $ ./gray                                                                   *)
+(*                                                                            *)
+(* Standard OCaml interpreter:                                                *)
+(* $ ocaml                                                                     *)
+(* # #use "gray.ml";;                                                         *)
+(* # gray 1;;                                                                  *)
+(* 0 1                                                                         *)
+(* # gray 2;;                                                                  *)
+(* 00 01 11 10                                                                 *)
 (*                                                                            *)
 (* ************************************************************************** *) 
