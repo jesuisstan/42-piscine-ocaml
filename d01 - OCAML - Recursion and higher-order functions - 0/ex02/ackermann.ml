@@ -11,6 +11,10 @@
    A(m,n) = A(m-1,1)                if m > 0 and n = 0
    A(m,n) = A(m-1,A(m,n-1))         if m > 0 and n > 0
    Returns -1 if any argument is negative *)
+(*                                                                            *)
+(* EXPLANATION: Function that demonstrates exponential growth through         *)
+(* double recursion. Values grow extremely fast: A(4,1) = 65533.            *)
+(*                                                                            *)
 
 let rec ackermann m n =
   if m < 0 || n < 0 then -1

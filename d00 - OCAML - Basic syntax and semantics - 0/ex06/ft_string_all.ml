@@ -16,14 +16,12 @@ let ft_string_all f str =
   in
   check_from 0
 
-(* Global predicate functions - available after #use *)
 let is_digit c = c >= '0' && c <= '9'
 let is_alpha c = (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
 let is_alphanum c = is_digit c || is_alpha c
 let is_lowercase c = c >= 'a' && c <= 'z'
 let is_uppercase c = c >= 'A' && c <= 'Z'
 
-(* Test cases *)
 let () =
   print_string "Testing '0123456789': ";
   print_string (string_of_bool (ft_string_all is_digit "0123456789"));
