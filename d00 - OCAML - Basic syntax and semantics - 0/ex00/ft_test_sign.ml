@@ -14,7 +14,7 @@ let () =
 (* Compilation and execution instructions:                                    *)
 (*                                                                            *)
 (* $ ocamlopt ft_test_sign.ml -o ft_test_sign                                 *)
-(* $ ./ft_test_sign.ml                                                        *)
+(* $ ./ft_test_sign                                                           *)
 (*                                                                            *)
 (* Standard OCaml interpreter:                                                *)
 (* $ ocaml                                                                    *)
