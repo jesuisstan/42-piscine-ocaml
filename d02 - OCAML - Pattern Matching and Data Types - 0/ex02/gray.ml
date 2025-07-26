@@ -12,13 +12,12 @@
 let gray n =
   let rec generate_gray n =
     if n <= 0 then [""]
+    else if n = 1 then ["0"; "1"]
     else
       let prev = generate_gray (n - 1) in
-      let rec combine zeros ones = function
-        | [] -> List.rev (List.rev_append zeros ones)
-        | h :: t -> combine (("0" ^ h) :: zeros) (("1" ^ h) :: ones) t
-      in
-      combine [] [] prev
+      let zeros = List.map (fun s -> "0" ^ s) prev in
+      let ones = List.map (fun s -> "1" ^ s) (List.rev prev) in
+      List.rev_append (List.rev zeros) ones
   in
   if n <= 0 then print_endline ""
   else
