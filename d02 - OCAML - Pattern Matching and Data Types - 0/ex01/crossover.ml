@@ -15,7 +15,7 @@ let crossover l1 l2 =
     | h :: t -> h = x || contains x t
   in
   let rec unique_common acc = function
-    | [] -> acc
+    | [] -> List.rev acc
     | h :: t -> 
         if contains h l2 && not (contains h acc)
         then unique_common (h :: acc) t
@@ -32,22 +32,18 @@ let main () =
     print_endline "]"
   in
   let print_int_list = print_list string_of_int in
-  let print_char_list l =
-    print_list (fun c -> "'" ^ String.make 1 c ^ "'") l
+  let print_string_list l =
+    print_list (fun s -> "\"" ^ s ^ "\"") l
   in
   print_endline "# Test cases:";
-  print_string "crossover [] [1; 2; 3] = ";
-  print_int_list (crossover [] [1; 2; 3]);
-  print_string "crossover [1; 2; 3] [] = ";
-  print_int_list (crossover [1; 2; 3] []);
-  print_string "crossover [1; 2; 3; 4] [2; 4; 6] = ";
-  print_int_list (crossover [1; 2; 3; 4] [2; 4; 6]);
-  print_string "crossover ['a'; 'b'; 'c'] ['b'; 'd'; 'c'] = ";
-  print_char_list (crossover ['a'; 'b'; 'c'] ['b'; 'd'; 'c']);
-  print_string "crossover ['a'; 'b'; 'c'] ['a'; 'b'; 'c'] = ";
-  print_char_list (crossover ['a'; 'b'; 'c'] ['a'; 'b'; 'c']);
-  print_string "crossover ['a'; 'b'; 'c'] ['b'; 'b'; 'b'] = ";
-  print_char_list (crossover ['a'; 'b'; 'c'] ['b'; 'b'; 'b'])
+  print_string "crossover [1; 2; 3] [1; 2; 3] = ";
+  print_int_list (crossover [1; 2; 3] [1; 2; 3]);
+  print_string "crossover [\"toto\"; \"tata\"; \"titi\"] [\"toto\"; \"tata\"; \"tutu\"] = ";
+  print_string_list (crossover ["toto"; "tata"; "titi"] ["toto"; "tata"; "tutu"]);
+  print_string "crossover [\"toto\"; \"tata\"; \"titi\"] [] = ";
+  print_string_list (crossover ["toto"; "tata"; "titi"] []);
+  print_string "crossover [] [\"toto\"; \"tata\"; \"titi\"] = ";
+  print_string_list (crossover [] ["toto"; "tata"; "titi"])
 
 let () = main ()
 

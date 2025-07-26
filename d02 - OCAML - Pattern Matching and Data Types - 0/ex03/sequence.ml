@@ -32,13 +32,10 @@ let sequence n =
 
 let main () =
   print_endline "# Test cases:";
-  print_endline ("sequence 0 = \"" ^ sequence 0 ^ "\"");
   print_endline ("sequence 1 = \"" ^ sequence 1 ^ "\"");
-  print_endline ("sequence 2 = \"" ^ sequence 2 ^ "\"");
-  print_endline ("sequence 3 = \"" ^ sequence 3 ^ "\"");
-  print_endline ("sequence 4 = \"" ^ sequence 4 ^ "\"");
-  print_endline ("sequence 5 = \"" ^ sequence 5 ^ "\"");
-  print_endline ("sequence 6 = \"" ^ sequence 6 ^ "\"")
+  print_endline ("sequence -1 = \"" ^ sequence (-1) ^ "\"");
+  print_endline ("sequence 6 = \"" ^ sequence 6 ^ "\"");
+  print_endline ("sequence 8 = \"" ^ sequence 8 ^ "\"")
 
 let () = main ()
 

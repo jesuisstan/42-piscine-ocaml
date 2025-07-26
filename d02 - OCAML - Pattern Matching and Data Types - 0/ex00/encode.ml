@@ -42,14 +42,12 @@ let main () =
     print_endline "]"
   in
   print_endline "# Test cases:";
+  print_string "encode ['a'; 'a'; 'a'; 'b'; 'b'; 'b'] = ";
+  print_char_list (encode ['a'; 'a'; 'a'; 'b'; 'b'; 'b']);
   print_string "encode [] = ";
   print_char_list (encode []);
-  print_string "encode ['a'; 'a'; 'a'; 'b'; 'b'] = ";
-  print_char_list (encode ['a'; 'a'; 'a'; 'b'; 'b']);
-  print_string "encode [1; 1; 1; 2; 2; 3] = ";
-  print_int_list (encode [1; 1; 1; 2; 2; 3]);
-  print_string "encode ['x'] = ";
-  print_char_list (encode ['x'])
+  print_string "encode [(3, 2); (3, 2); (4, 3)] = ";
+  print_int_list (encode [(3, 2); (3, 2); (4, 3)])
 
 let () = main ()
 

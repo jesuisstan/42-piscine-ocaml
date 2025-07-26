@@ -59,9 +59,7 @@ let main () =
   print_string "generate_nucleotide 'G' = ";
   print_nucleotide (generate_nucleotide 'G');
   print_string "generate_nucleotide 'X' = ";
-  print_nucleotide (generate_nucleotide 'X')
-
-let () = main ()
+  print_nucleotide (generate_nucleotide 'X') 
 
 (* ************************************************************************** *)
 (*                                                                            *)

@@ -2,7 +2,7 @@
 (*                                                                            *)
 (* gray.ml                                                                    *)
 (* Exercise 02: Gray code sequence generation                                 *)
-(* Allowed functions: String module and not the @ operator                   *)
+(* Allowed functions: String module                                           *)
 (*                                                                            *)
 (* ************************************************************************** *)
 
@@ -15,7 +15,7 @@ let gray n =
     else
       let prev = generate_gray (n - 1) in
       let rec combine zeros ones = function
-        | [] -> zeros @ ones
+        | [] -> List.rev (List.rev_append zeros ones)
         | h :: t -> combine (("0" ^ h) :: zeros) (("1" ^ h) :: ones) t
       in
       combine [] [] prev
@@ -28,14 +28,18 @@ let gray n =
 
 let main () =
   print_endline "# Test cases:";
+  print_string "gray 0:\n";
+  gray 0;
   print_string "gray 1:\n";
   gray 1;
   print_string "gray 2:\n";
   gray 2;
   print_string "gray 3:\n";
   gray 3;
-  print_string "gray 0:\n";
-  gray 0
+  print_string "gray 4:\n";
+  gray 4;
+  print_string "gray 5:\n";
+  gray 5
 
 let () = main ()
 
