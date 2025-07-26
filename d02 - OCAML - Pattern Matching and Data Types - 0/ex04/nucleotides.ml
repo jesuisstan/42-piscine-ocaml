@@ -48,18 +48,23 @@ let print_nucleotide n =
   print_string (string_of_nucleobase n.base);
   print_endline " }"
 
+(* Handler function to demonstrate types and generate_nucleotide *)
+let handle_nucleotide c =
+  let result = generate_nucleotide c in
+  print_string "generate_nucleotide '";
+  print_char c;
+  print_string "' = ";
+  print_nucleotide result
+
 let main () =
   print_endline "# Test cases:";
-  print_string "generate_nucleotide 'A' = ";
-  print_nucleotide (generate_nucleotide 'A');
-  print_string "generate_nucleotide 'T' = ";
-  print_nucleotide (generate_nucleotide 'T');
-  print_string "generate_nucleotide 'C' = ";
-  print_nucleotide (generate_nucleotide 'C');
-  print_string "generate_nucleotide 'G' = ";
-  print_nucleotide (generate_nucleotide 'G');
-  print_string "generate_nucleotide 'X' = ";
-  print_nucleotide (generate_nucleotide 'X') 
+  handle_nucleotide 'A';
+  handle_nucleotide 'T';
+  handle_nucleotide 'C';
+  handle_nucleotide 'G';
+  handle_nucleotide 'X'
+
+let () = main ()
 
 (* ************************************************************************** *)
 (*                                                                            *)
