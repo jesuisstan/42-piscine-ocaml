@@ -11,7 +11,7 @@
    Empty list returns empty list *)
 
 let encode lst =
-  let rec encode_aux count acc = function
+  let rec encode_aux count acc lst = match lst with
     | [] -> acc
     | [x] -> (count + 1, x) :: acc
     | x :: (y :: _ as t) ->
