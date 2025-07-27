@@ -30,6 +30,9 @@ let main () =
   let print_tuple_tuple (count, (a, b)) =
     print_string ("(" ^ string_of_int count ^ ", (" ^ string_of_int a ^ ", " ^ string_of_int b ^ "))")
   in
+  let print_char_tuple_tuple (count, (a, b)) =
+    print_string ("(" ^ string_of_int count ^ ", ('" ^ String.make 1 a ^ "', '" ^ String.make 1 b ^ "'))")
+  in
   let print_char_list l =
     print_string "[";
     List.iteri (fun i x ->
@@ -51,6 +54,13 @@ let main () =
       print_tuple_tuple x) l;
     print_endline "]"
   in
+  let print_char_tuple_list l =
+    print_string "[";
+    List.iteri (fun i x ->
+      if i > 0 then print_string "; ";
+      print_char_tuple_tuple x) l;
+    print_endline "]"
+  in
   print_endline "# Test cases:";
   print_string "encode ['a'; 'a'; 'a'; 'b'; 'b'; 'b'] = ";
   print_char_list (encode ['a'; 'a'; 'a'; 'b'; 'b'; 'b']);
@@ -59,7 +69,9 @@ let main () =
   print_string "encode [3; 3; 3; 2; 2; 4; 4; 4; 4] = ";
   print_int_list (encode [3; 3; 3; 2; 2; 4; 4; 4; 4]);
   print_string "encode [(3, 2); (3, 2); (4, 3)] = ";
-  print_tuple_list (encode [(3, 2); (3, 2); (4, 3)])
+  print_tuple_list (encode [(3, 2); (3, 2); (4, 3)]);
+  print_string "encode [(a, b); (a, b); (c, d)] = ";
+  print_char_tuple_list (encode [('a', 'b'); ('a', 'b'); ('c', 'd')])
 
 let () = main ()
 
