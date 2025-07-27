@@ -1,4 +1,4 @@
-let eu_dist a b =
+let eu_dist : float array -> float array -> float = fun a b ->
   if Array.length a <> Array.length b then invalid_arg "eu_dist: arrays must have the same length";
   let sum = ref 0.0 in
   for i = 0 to Array.length a - 1 do
@@ -10,10 +10,16 @@ let eu_dist a b =
 let () =
   let a = [|1.0; 2.0; 3.0|] in
   let b = [|4.0; 6.0; 8.0|] in
-  Printf.printf "eu_dist [1.0;2.0;3.0] [4.0;6.0;8.0] = %f\n" (eu_dist a b);
+  Printf.printf "Euclidian distance between [1.0;2.0;3.0] and [4.0;6.0;8.0] = %f\n" (eu_dist a b);
   let c = [|0.0; 0.0|] in
   let d = [|0.0; 0.0|] in
-  Printf.printf "eu_dist [0.0;0.0] [0.0;0.0] = %f\n" (eu_dist c d)
+  Printf.printf "Euclidian distance between [0.0;0.0] and [0.0;0.0] = %f\n" (eu_dist c d);
+
+  Printf.printf "--------------------------------\n";
+  Printf.printf "Testing eu_dist with different lengths: [1.0;2.0] and [1.0;2.0;3.0]\n";
+  let e = [|1.0; 2.0|] in
+  let f = [|1.0; 2.0; 3.0|] in
+  Printf.printf "Euclidian distance between [1.0;2.0] and [1.0;2.0;3.0] = %f\n" (eu_dist e f)
 
 (* ************************************************************************** *)
 (*                                                                            *)

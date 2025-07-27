@@ -1,7 +1,7 @@
-let jokes = [|
+let jokes : string array = [|
   "Why did the OCaml programmer cross the road? To get to the other side-effect!";
   "Why do functional programmers confuse Halloween and Christmas? Because OCT 31 == DEC 25.";
-  "A lambda walks into a bar. The bartender says: 'Sorry, we don't serve functions here.'";
+  "Why do programmers prefer dark mode? Because light attracts bugs!";
   "Why was the JavaScript developer sad? Because he didn't know how to 'null' his feelings.";
   "Why did the computer get cold? Because it forgot to close its Windows!"
 |]

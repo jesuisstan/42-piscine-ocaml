@@ -1,4 +1,4 @@
-let my_sleep () = Unix.sleep 1
+let my_sleep : unit -> unit = fun () -> Unix.sleep 1
 
 let () =
   if Array.length Sys.argv <> 2 then exit 0;
