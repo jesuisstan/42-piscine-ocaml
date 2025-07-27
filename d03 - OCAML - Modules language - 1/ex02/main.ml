@@ -50,9 +50,11 @@ let main () =
   
   print_endline "\n# Testing comparison functions:";
   test_compare ace_spades king_hearts;
-  test_compare king_hearts ten_diamonds;
+  test_compare ten_diamonds king_hearts;
+  test_compare ten_diamonds ten_diamonds;
   test_max ace_spades king_hearts;
   test_min king_hearts ten_diamonds;
+  test_min king_hearts king_hearts;
   
   print_endline "\n# Testing best function:";
   test_best [];

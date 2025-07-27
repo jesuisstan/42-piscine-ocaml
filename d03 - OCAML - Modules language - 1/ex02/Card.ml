@@ -75,7 +75,7 @@ let toStringVerbose card =
 let compare c1 c2 =
   match Value.toInt c1.value - Value.toInt c2.value with
   | 0 -> Stdlib.compare (Color.toString c1.color) (Color.toString c2.color)
-  | n -> n
+  | n -> if n > 0 then 1 else -1
 
 let max c1 c2 = if compare c1 c2 >= 0 then c1 else c2
 let min c1 c2 = if compare c1 c2 <= 0 then c1 else c2
