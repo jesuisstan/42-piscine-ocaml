@@ -32,7 +32,7 @@ let generate_nucleotide c =
     base = base;
   }
 
-let string_of_nucleobase = function
+let string_of_nucleobase base = match base with
   | A -> "A"
   | T -> "T"
   | C -> "C"

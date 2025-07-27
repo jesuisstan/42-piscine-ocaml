@@ -10,11 +10,11 @@
    Empty list if either input list is empty *)
 
 let crossover l1 l2 =
-  let rec contains x = function
+  let rec contains x lst = match lst with
     | [] -> false
     | h :: t -> h = x || contains x t
   in
-  let rec unique_common acc = function
+  let rec unique_common acc lst = match lst with
     | [] -> List.rev acc
     | h :: t -> 
         if contains h l2 && not (contains h acc)

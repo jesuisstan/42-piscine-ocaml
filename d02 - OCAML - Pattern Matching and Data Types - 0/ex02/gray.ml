@@ -10,13 +10,15 @@
    Prints each code separated by space, followed by newline *)
 
 let gray n =
+  let add_zero s = "0" ^ s in
+  let add_one s = "1" ^ s in
   let rec generate_gray n =
     if n <= 0 then [""]
     else if n = 1 then ["0"; "1"]
     else
       let prev = generate_gray (n - 1) in
-      let zeros = List.map (fun s -> "0" ^ s) prev in
-      let ones = List.map (fun s -> "1" ^ s) (List.rev prev) in
+      let zeros = List.map add_zero prev in
+      let ones = List.map add_one (List.rev prev) in
       List.rev_append (List.rev zeros) ones
   in
   if n <= 0 then print_endline ""

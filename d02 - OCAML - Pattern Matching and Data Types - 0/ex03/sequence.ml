@@ -11,7 +11,7 @@
 
 let sequence n =
   let count_and_say s =
-    let rec aux count curr acc = function
+    let rec aux count curr acc lst = match lst with
       | [] -> acc ^ string_of_int count ^ String.make 1 curr
       | h :: t when h = curr -> aux (count + 1) curr acc t
       | h :: t -> aux 1 h (acc ^ string_of_int count ^ String.make 1 curr) t
@@ -20,7 +20,11 @@ let sequence n =
     | 0 -> ""
     | _ -> 
         let first = s.[0] in
-        let chars = List.init (String.length s) (String.get s) in
+        let rec string_to_list s i =
+          if i >= String.length s then []
+          else String.get s i :: string_to_list s (i + 1)
+        in
+        let chars = string_to_list s 0 in
         aux 1 first "" (List.tl chars)
   in
   let rec generate_sequence i =
