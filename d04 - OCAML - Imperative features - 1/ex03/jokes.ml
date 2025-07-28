@@ -13,10 +13,10 @@ let () =
   if Array.length Sys.argv <> 2 then (print_endline "Usage: jokes <file>"; exit 1);
   try
   let jokes = read_jokes Sys.argv.(1) in
-  if Array.length jokes = 0 then (print_endline "No jokes found!"; exit 1);
-  Random.self_init ();
-  let idx = Random.int (Array.length jokes) in
-  print_endline jokes.(idx)
+    if Array.length jokes = 0 then (print_endline "No jokes found!"; exit 1);
+    Random.self_init ();
+    let idx = Random.int (Array.length jokes) in
+    print_endline jokes.(idx)
   with Sys_error msg ->
     Printf.printf "Error: %s\n" msg;
     print_endline "Make sure the file exists and is readable.";
