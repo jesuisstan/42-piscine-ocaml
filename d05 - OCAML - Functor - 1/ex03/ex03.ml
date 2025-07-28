@@ -40,7 +40,7 @@ module Make (F : FRACTIONAL_BITS) : FIXED = struct
   type t = int
   let bits = F.bits
   let scale = 1 lsl bits
-  let of_float f = int_of_float (f *. float_of_int scale)
+  let of_float f = int_of_float (f *. float_of_int scale +. 0.5)
   let of_int i = i * scale
   let to_float t = float_of_int t /. float_of_int scale
   let to_int t = t / scale
@@ -119,8 +119,8 @@ let test_fixed_point () =
   Printf.printf "div %s %s = %s\n" (Fixed8.to_string b) (Fixed8.to_string d) (Fixed8.to_string (Fixed8.div b d))
 
 let () =
-  let x8 = Fixed8.of_float 21.093750 in
-  let y8 = Fixed8.of_float 21.328125 in
+  let x8 = Fixed8.of_float 21.10 in
+  let y8 = Fixed8.of_float 21.32 in
   let r8 = Fixed8.add x8 y8 in
   print_endline (Fixed8.to_string r8);
   Fixed4.foreach Fixed4.zero Fixed4.one (fun f -> print_endline (Fixed4.to_string f));
