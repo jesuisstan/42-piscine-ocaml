@@ -1,18 +1,11 @@
-(* ************************************************************************** *)
-(*                                                                            *)
-(*                               d06 - ex02                                   *)
-(*                                                                            *)
-(*   Test for class dalek, doctor, people                                     *)
-(*                                                                            *)
-(* ************************************************************************** *)
-
 let () =
   let amy = new People.people "Amy" in
   let doc = new Doctor.doctor "The Doctor" 1200 amy in
-  let dalek = new Dalek.dalek "DalekSec" in
+  let dalek = new Dalek.dalek in
   print_endline (dalek#to_string);
   dalek#talk;
   dalek#exterminate amy;
+  print_endline (dalek#to_string);  (* Check if shield is changed *)
   dalek#die;
   doc#talk;
   amy#talk;
@@ -29,13 +22,13 @@ let () =
 (* $ ./main                                                                  *)
 (*                                                                            *)
 (* Standard OCaml interpreter:                                                *)
-(* $ ocaml                                                                     *)
+(* $ ocaml                                                                    *)
 (* # #use "people.ml";;                                                       *)
 (* # #use "doctor.ml";;                                                        *)
 (* # #use "dalek.ml";;                                                         *)
-(* # let dalek = new Dalek.dalek "DalekSec";;                                  *)
+(* # let dalek = new Dalek.dalek;;                                             *)
 (* val dalek : Dalek.dalek = <obj>                                              *)
 (* # dalek#to_string;;                                                          *)
-(* - : string = "DalekSec"                                                     *)
+(* - : string = "DalekXXX"                                                     *)
 (*                                                                            *)
 (* ************************************************************************** *) 
