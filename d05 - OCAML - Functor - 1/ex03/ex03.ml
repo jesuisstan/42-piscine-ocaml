@@ -119,8 +119,8 @@ let test_fixed_point () =
   Printf.printf "div %s %s = %s\n" (Fixed8.to_string b) (Fixed8.to_string d) (Fixed8.to_string (Fixed8.div b d))
 
 let () =
-  let x8 = Fixed8.of_float 21.10 in
-  let y8 = Fixed8.of_float 21.32 in
+  let x8 = Fixed8.of_float 21.093750 in
+  let y8 = Fixed8.of_float 21.328125 in
   let r8 = Fixed8.add x8 y8 in
   print_endline (Fixed8.to_string r8);
   Fixed4.foreach Fixed4.zero Fixed4.one (fun f -> print_endline (Fixed4.to_string f));
