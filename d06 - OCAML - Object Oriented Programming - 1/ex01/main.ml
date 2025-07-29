@@ -5,10 +5,7 @@ let () =
   doc#talk;
   doc#travel_in_time 2013 1963;
   doc#use_sonic_screwdriver;
-  
-  (* Note: regenerate method is private and cannot be tested from outside the class *)
-  (* This is correct according to the subject requirements *)
-  
+
   amy#talk;
   amy#die
 
