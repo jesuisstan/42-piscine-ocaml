@@ -1,11 +1,3 @@
-(* ************************************************************************** *)
-(*                                                                            *)
-(*                               d06 - ex02                                   *)
-(*                                                                            *)
-(*   Class: doctor (for ex02)                                                 *)
-(*                                                                            *)
-(* ************************************************************************** *)
-
 class doctor (name_init:string) (age_init:int) (sidekick:People.people) = object
   val name : string = name_init
   val age : int = age_init
