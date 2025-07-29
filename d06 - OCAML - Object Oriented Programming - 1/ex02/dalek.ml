@@ -1,3 +1,5 @@
+Random.self_init ()
+
 class dalek = object
   val name : string = 
     let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" in
@@ -19,6 +21,5 @@ class dalek = object
     p#die
   method die = print_endline "Emergency Temporal Shift!"
   initializer 
-    Random.self_init ();
     print_endline ("A new Dalek named " ^ name ^ " has been created!")
 end 
