@@ -5,11 +5,9 @@ let () =
   print_endline (dalek#to_string);
   dalek#talk;
   dalek#exterminate amy;
-  print_endline (dalek#to_string);  (* Check if shield is changed *)
+  print_endline (dalek#to_string);
   dalek#die;
   doc#talk;
-  amy#talk;
-  amy#die
 
 (* ************************************************************************** *)
 (*                                                                            *)
