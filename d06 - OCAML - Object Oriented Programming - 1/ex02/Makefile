@@ -13,7 +13,7 @@ people.cmx: people.ml
 doctor.cmx: doctor.ml people.cmx
 	ocamlopt -c doctor.ml
 
-dalek.cmx: dalek.ml people.cmx
+dalek.cmx: dalek.ml people.cmx doctor.cmx
 	ocamlopt -c dalek.ml
 
 main.cmx: main.ml people.cmx doctor.cmx dalek.cmx
