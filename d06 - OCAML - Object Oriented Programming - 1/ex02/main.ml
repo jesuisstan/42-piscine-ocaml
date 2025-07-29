@@ -3,7 +3,7 @@ let () =
   let doc = new Doctor.doctor "The Doctor" 1200 amy in
   let dalek = new Dalek.dalek in
 
-  print_endline "=== BATTLE SIMULATION ===";
+  print_endline "\n=== BATTLE SIMULATION ===";
   print_endline (dalek#to_string);
   dalek#talk;
 
@@ -25,6 +25,9 @@ let () =
 
   print_endline "\n--- Doctor talks ---";
   doc#talk;
+
+  print_endline "\n=== TEST DALEK DIE METHOD ===";
+  dalek#die;
 
 (* ************************************************************************** *)
 (*                                                                            *)
