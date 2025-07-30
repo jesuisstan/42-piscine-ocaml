@@ -1,23 +1,23 @@
-NAME = alkane
-SOURCES = alkane.ml
+NAME = main
+SOURCES = atom.ml molecule.ml alkane.ml main.ml
 OBJECTS = $(SOURCES:.ml=.cmx)
-
-OCAMLOPT = ocamlopt
-OCAMLFLAGS = -c
 
 all: $(NAME)
 
-$(NAME): ../ex00/atom.cmx ../ex01/molecule.cmx $(OBJECTS)
-	$(OCAMLOPT) -o $(NAME) ../ex00/atom.cmx ../ex01/molecule.cmx $(OBJECTS)
+$(NAME): $(OBJECTS)
+	ocamlopt -o $(NAME) $(OBJECTS)
 
-../ex00/atom.cmx: ../ex00/atom.ml
-	$(OCAMLOPT) $(OCAMLFLAGS) $< -o $@
+atom.cmx: atom.ml
+	ocamlopt -c atom.ml
 
-../ex01/molecule.cmx: ../ex01/molecule.ml ../ex00/atom.cmx
-	$(OCAMLOPT) $(OCAMLFLAGS) $< -o $@
+molecule.cmx: molecule.ml atom.cmx
+	ocamlopt -c molecule.ml
 
-%.cmx: %.ml
-	$(OCAMLOPT) $(OCAMLFLAGS) $<
+alkane.cmx: alkane.ml atom.cmx molecule.cmx
+	ocamlopt -c alkane.ml
+
+main.cmx: main.ml atom.cmx molecule.cmx alkane.cmx
+	ocamlopt -c main.ml
 
 clean:
 	rm -f *.cmx *.cmi *.o $(NAME)

@@ -1,20 +1,20 @@
-NAME = molecule
-SOURCES = molecule.ml
+NAME = main
+SOURCES = atom.ml molecule.ml main.ml
 OBJECTS = $(SOURCES:.ml=.cmx)
-
-OCAMLOPT = ocamlopt
-OCAMLFLAGS = -c
 
 all: $(NAME)
 
-$(NAME): ../ex00/atom.cmx $(OBJECTS)
-	$(OCAMLOPT) -o $(NAME) ../ex00/atom.cmx $(OBJECTS)
+$(NAME): $(OBJECTS)
+	ocamlopt -o $(NAME) $(OBJECTS)
 
-../ex00/atom.cmx: ../ex00/atom.ml
-	$(OCAMLOPT) $(OCAMLFLAGS) $< -o $@
+atom.cmx: atom.ml
+	ocamlopt -c atom.ml
 
-%.cmx: %.ml
-	$(OCAMLOPT) $(OCAMLFLAGS) $<
+molecule.cmx: molecule.ml atom.cmx
+	ocamlopt -c molecule.ml
+
+main.cmx: main.ml atom.cmx molecule.cmx
+	ocamlopt -c main.ml
 
 clean:
 	rm -f *.cmx *.cmi *.o $(NAME)

@@ -1,17 +1,17 @@
-NAME = atom
-SOURCES = atom.ml
+NAME = main
+SOURCES = atom.ml main.ml
 OBJECTS = $(SOURCES:.ml=.cmx)
-
-OCAMLOPT = ocamlopt
-OCAMLFLAGS = -c
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(OCAMLOPT) -o $(NAME) $(OBJECTS)
+	ocamlopt -o $(NAME) $(OBJECTS)
 
-%.cmx: %.ml
-	$(OCAMLOPT) $(OCAMLFLAGS) $<
+atom.cmx: atom.ml
+	ocamlopt -c atom.ml
+
+main.cmx: main.ml atom.cmx
+	ocamlopt -c main.ml
 
 clean:
 	rm -f *.cmx *.cmi *.o $(NAME)

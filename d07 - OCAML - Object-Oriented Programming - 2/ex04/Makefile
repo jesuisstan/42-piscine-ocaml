@@ -1,29 +1,29 @@
-NAME = alkane_combustion
-SOURCES = alkane_combustion.ml
+NAME = main
+SOURCES = atom.ml molecule.ml alkane.ml reaction.ml alkane_combustion.ml main.ml
 OBJECTS = $(SOURCES:.ml=.cmx)
-
-OCAMLOPT = ocamlopt
-OCAMLFLAGS = -c
 
 all: $(NAME)
 
-$(NAME): ../ex00/atom.cmx ../ex01/molecule.cmx ../ex02/alkane.cmx ../ex03/reaction.cmx $(OBJECTS)
-	$(OCAMLOPT) -o $(NAME) ../ex00/atom.cmx ../ex01/molecule.cmx ../ex02/alkane.cmx ../ex03/reaction.cmx $(OBJECTS)
+$(NAME): $(OBJECTS)
+	ocamlopt -o $(NAME) $(OBJECTS)
 
-../ex00/atom.cmx: ../ex00/atom.ml
-	$(OCAMLOPT) $(OCAMLFLAGS) $< -o $@
+atom.cmx: atom.ml
+	ocamlopt -c atom.ml
 
-../ex01/molecule.cmx: ../ex01/molecule.ml ../ex00/atom.cmx
-	$(OCAMLOPT) $(OCAMLFLAGS) $< -o $@
+molecule.cmx: molecule.ml atom.cmx
+	ocamlopt -c molecule.ml
 
-../ex02/alkane.cmx: ../ex02/alkane.ml ../ex00/atom.cmx ../ex01/molecule.cmx
-	$(OCAMLOPT) $(OCAMLFLAGS) $< -o $@
+alkane.cmx: alkane.ml atom.cmx molecule.cmx
+	ocamlopt -c alkane.ml
 
-../ex03/reaction.cmx: ../ex03/reaction.ml ../ex00/atom.cmx ../ex01/molecule.cmx
-	$(OCAMLOPT) $(OCAMLFLAGS) $< -o $@
+reaction.cmx: reaction.ml atom.cmx molecule.cmx
+	ocamlopt -c reaction.ml
 
-%.cmx: %.ml
-	$(OCAMLOPT) $(OCAMLFLAGS) $<
+alkane_combustion.cmx: alkane_combustion.ml atom.cmx molecule.cmx alkane.cmx reaction.cmx
+	ocamlopt -c alkane_combustion.ml
+
+main.cmx: main.ml atom.cmx molecule.cmx alkane.cmx reaction.cmx alkane_combustion.cmx
+	ocamlopt -c main.ml
 
 clean:
 	rm -f *.cmx *.cmi *.o $(NAME)
