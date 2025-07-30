@@ -1,28 +1,23 @@
 let () =
-  let dummy = new Reaction.dummy_reaction in
-  print_endline (dummy#to_string);
-  Printf.printf "Dummy reaction name: %s\n" dummy#name;
-  Printf.printf "Dummy reaction start: %d molecules\n" (List.length dummy#get_start);
-  Printf.printf "Dummy reaction result: %d molecules\n" (List.length dummy#get_result)
-
-(* ************************************************************************** *)
-(*                                                                            *)
-(* Compilation and execution instructions:                                    *)
-(*                                                                            *)
-(* $ ocamlopt -c atom.ml                                                      *)
-(* $ ocamlopt -c molecule.ml                                                  *)
-(* $ ocamlopt -c reaction.ml                                                  *)
-(* $ ocamlopt -o main atom.cmx molecule.cmx reaction.cmx main.ml             *)
-(* $ ./main                                                                  *)
-(*                                                                            *)
-(* Standard OCaml interpreter:                                                *)
-(* $ ocaml                                                                     *)
-(* # #use "atom.ml";;                                                         *)
-(* # #use "molecule.ml";;                                                     *)
-(* # #use "reaction.ml";;                                                     *)
-(* # let dummy = new dummy_reaction;;                                        *)
-(* val dummy : dummy_reaction = <obj>                                        *)
-(* # dummy#to_string;;                                                        *)
-(* - : string = "<reaction: name=Dummy Reaction>"                            *)
-(*                                                                            *)
-(* ************************************************************************** *) 
+  let reaction = new Reaction.methane_combustion in
+  print_endline (reaction#to_string);
+  Printf.printf "Reaction name: %s\n" reaction#name;
+  
+  (* Show reactants and products *)
+  Printf.printf "Reactants: %d types\n" (List.length reaction#get_start);
+  Printf.printf "Products: %d types\n" (List.length reaction#get_result);
+  
+  (* Show detailed reactants *)
+  print_endline "\nReactants (get_start):";
+  List.iter (fun (molecule, count) ->
+    Printf.printf "  %s x%d\n" molecule#to_string count
+  ) reaction#get_start;
+  
+  (* Show detailed products *)
+  print_endline "\nProducts (get_result):";
+  List.iter (fun (molecule, count) ->
+    Printf.printf "  %s x%d\n" molecule#to_string count
+  ) reaction#get_result;
+  
+  (* Show if balanced *)
+  Printf.printf "\nIs balanced: %b\n" reaction#is_balanced

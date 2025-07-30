@@ -1,46 +1,41 @@
 let () =
-  let methane = new Alkane.alkane 1 4 in
-  let ethane = new Alkane.alkane 2 6 in
+  let methane = new Alkane.alkane 1 in
   
-  let combustion = new Alkane_combustion.alkane_combustion [methane; ethane] in
+  print_endline "=== Testing Alkane Combustion ===";
   
+  (* Create unbalanced combustion *)
+  let combustion = new Alkane_combustion.alkane_combustion [methane] in
   print_endline (combustion#to_string);
-  Printf.printf "Combustion name: %s\n" combustion#name;
+  Printf.printf "Is balanced? %b\n" combustion#is_balanced;
   
-  let reactants = combustion#get_start in
-  let products = combustion#get_result in
+  (* Try to get start/result from unbalanced reaction *)
+  (try 
+    ignore (combustion#get_start);
+    print_endline "ERROR: Should have thrown exception!"
+  with Alkane_combustion.Not_balanced -> 
+    print_endline "Correctly threw Not_balanced exception for get_start");
   
-  Printf.printf "Number of reactants: %d\n" (List.length reactants);
-  Printf.printf "Number of products: %d\n" (List.length products);
+  (try 
+    ignore (combustion#get_result);
+    print_endline "ERROR: Should have thrown exception!"
+  with Alkane_combustion.Not_balanced -> 
+    print_endline "Correctly threw Not_balanced exception for get_result");
   
-  Printf.printf "Reactants:\n";
-  List.iter (fun r -> Printf.printf "  %s\n" r#to_string) reactants;
+  (* Balance the reaction *)
+  let balanced_combustion = combustion#balance in
+  print_endline (balanced_combustion#to_string);
+  Printf.printf "Is balanced after balance? %b\n" balanced_combustion#is_balanced;
   
-  Printf.printf "Products:\n";
-  List.iter (fun p -> Printf.printf "  %s\n" p#to_string) products
+  (* Now we can get start and result *)
+  let start = balanced_combustion#get_start in
+  let result = balanced_combustion#get_result in
+  
+  Printf.printf "Start molecules: %d\n" (List.length start);
+  List.iter (fun (molecule, count) -> 
+    Printf.printf "  %s x%d\n" molecule#to_string count
+  ) start;
 
-(* ************************************************************************** *)
-(*                                                                            *)
-(* Compilation and execution instructions:                                    *)
-(*                                                                            *)
-(* $ ocamlopt -c atom.ml                                                      *)
-(* $ ocamlopt -c molecule.ml                                                  *)
-(* $ ocamlopt -c alkane.ml                                                    *)
-(* $ ocamlopt -c reaction.ml                                                  *)
-(* $ ocamlopt -c alkane_combustion.ml                                         *)
-(* $ ocamlopt -o main atom.cmx molecule.cmx alkane.cmx reaction.cmx alkane_combustion.cmx main.ml *)
-(* $ ./main                                                                  *)
-(*                                                                            *)
-(* Standard OCaml interpreter:                                                *)
-(* $ ocaml                                                                     *)
-(* # #use "atom.ml";;                                                         *)
-(* # #use "molecule.ml";;                                                     *)
-(* # #use "alkane.ml";;                                                       *)
-(* # #use "reaction.ml";;                                                     *)
-(* # #use "alkane_combustion.ml";;                                            *)
-(* # let methane = new alkane 1 4;;                                          *)
-(* # let combustion = new alkane_combustion [methane];;                      *)
-(* # combustion#to_string;;                                                   *)
-(* - : string = "<reaction: name=Alkane Combustion>"                         *)
-(*                                                                            *)
-(* ************************************************************************** *) 
+  Printf.printf "Result molecules: %d\n" (List.length result);
+  List.iter (fun (molecule, count) -> 
+    Printf.printf "  %s x%d\n" molecule#to_string count
+  ) result

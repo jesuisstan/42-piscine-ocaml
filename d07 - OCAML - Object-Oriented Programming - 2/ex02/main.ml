@@ -1,7 +1,7 @@
 let () =
-  let methane = new Alkane.alkane 1 4 in
-  let ethane = new Alkane.alkane 2 6 in
-  let octane = new Alkane.alkane 8 18 in
+  let methane = new Alkane.methane in
+  let ethane = new Alkane.ethane in
+  let octane = new Alkane.octane in
   
   let alkanes = [methane; ethane; octane] in
   
@@ -26,9 +26,9 @@ let () =
 (* # #use "atom.ml";;                                                         *)
 (* # #use "molecule.ml";;                                                     *)
 (* # #use "alkane.ml";;                                                       *)
-(* # let methane = new alkane 1 4;;                                          *)
-(* val methane : alkane = <obj>                                              *)
+(* # let methane = new methane;;                                              *)
+(* val methane : methane = <obj>                                              *)
 (* # methane#to_string;;                                                      *)
-(* - : string = "<alkane: name=Alkane, formula=CH4>"                         *)
+(* - : string = "<molecule: name=Methane, formula=CH4>"                       *)
 (*                                                                            *)
 (* ************************************************************************** *) 

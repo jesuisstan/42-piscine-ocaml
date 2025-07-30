@@ -1,7 +1,9 @@
-(* Main test file for ex00 - Atom classes *)
+(* Test atom classes *)
 
-(* Test code *)
 let () =
+  print_endline "=== Testing Atom Classes ===";
+  
+  (* Test basic atoms *)
   let h = new Atom.hydrogen in
   let c = new Atom.carbon in
   let o = new Atom.oxygen in
@@ -9,34 +11,29 @@ let () =
   let na = new Atom.sodium in
   let cl = new Atom.chlorine in
   
-  let atoms = [h; c; o; n; na; cl] in
+  print_endline (h#to_string);
+  print_endline (c#to_string);
+  print_endline (o#to_string);
+  print_endline (n#to_string);
+  print_endline (na#to_string);
+  print_endline (cl#to_string);
   
-  (* Test atom creation and to_string *)
-  List.iter (fun atom -> print_endline (atom#to_string)) atoms;
+  (* Test bonus atoms *)
+  let p = new Atom.phosphorus in
+  let s = new Atom.sulfur in
+  let k = new Atom.potassium in
+  let ca = new Atom.calcium in
+  let fe = new Atom.iron in
+  
+  print_endline "\n=== Bonus Atoms ===";
+  print_endline (p#to_string);
+  print_endline (s#to_string);
+  print_endline (k#to_string);
+  print_endline (ca#to_string);
+  print_endline (fe#to_string);
   
   (* Test equals method *)
-  Printf.printf "Hydrogen equals Carbon? %b\n" (h#equals c);
-  Printf.printf "Hydrogen equals Hydrogen? %b\n" (h#equals (new Atom.hydrogen));
-  
-  (* Test individual properties *)
-  Printf.printf "Hydrogen symbol: %s\n" h#symbol;
-  Printf.printf "Carbon atomic number: %d\n" c#atomic_number;
-  Printf.printf "Oxygen name: %s\n" o#name
-
-(* ************************************************************************** *)
-(*                                                                            *)
-(* Compilation and execution instructions:                                    *)
-(*                                                                            *)
-(* $ ocamlopt -c atom.ml                                                      *)
-(* $ ocamlopt -o main atom.cmx main.ml                                        *)
-(* $ ./main                                                                  *)
-(*                                                                            *)
-(* Standard OCaml interpreter:                                                *)
-(* $ ocaml                                                                     *)
-(* # #use "atom.ml";;                                                         *)
-(* # let h = new hydrogen;;                                                   *)
-(* val h : hydrogen = <obj>                                                   *)
-(* # h#to_string;;                                                            *)
-(* - : string = "<atom: name=Hydrogen, symbol=H, atomic_number=1>"           *)
-(*                                                                            *)
-(* ************************************************************************** *) 
+  print_endline "\n=== Testing Equals Method ===";
+  let h2 = new Atom.hydrogen in
+  print_endline (Printf.sprintf "Hydrogen equals Hydrogen: %b" (h#equals h2));
+  print_endline (Printf.sprintf "Hydrogen equals Carbon: %b" (h#equals c)) 
