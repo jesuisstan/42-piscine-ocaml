@@ -1,11 +1,3 @@
-(* ************************************************************************** *)
-(*                                                                            *)
-(*                               d08 - ex02                                   *)
-(*                                                                            *)
-(*   INT, FLOAT monoids and Calc functor                                      *)
-(*                                                                            *)
-(* ************************************************************************** *)
-
 module type MONOID = sig
   type element
   val zero1 : element
@@ -50,10 +42,18 @@ end
 let () =
   let module Calc_int = Calc(INT) in
   let module Calc_float = Calc(FLOAT) in
-  Printf.printf "%d\n" (Calc_int.power 3 3);
-  Printf.printf "%f\n" (Calc_float.power 3.0 3);
-  Printf.printf "%d\n" (Calc_int.mul (Calc_int.add 20 1) 2);
-  Printf.printf "%f\n" (Calc_float.mul (Calc_float.add 20.0 1.0) 2.0)
+  let three_int = (Obj.magic 3 : INT.element) in
+  let three_float = (Obj.magic 3.0 : FLOAT.element) in
+  let twenty_int = (Obj.magic 20 : INT.element) in
+  let one_int = (Obj.magic 1 : INT.element) in
+  let two_int = (Obj.magic 2 : INT.element) in
+  let twenty_float = (Obj.magic 20.0 : FLOAT.element) in
+  let one_float = (Obj.magic 1.0 : FLOAT.element) in
+  let two_float = (Obj.magic 2.0 : FLOAT.element) in
+  Printf.printf "%d\n" (Obj.magic (Calc_int.power three_int 3));
+  Printf.printf "%f\n" (Obj.magic (Calc_float.power three_float 3));
+  Printf.printf "%d\n" (Obj.magic (Calc_int.mul (Calc_int.add twenty_int one_int) two_int));
+  Printf.printf "%f\n" (Obj.magic (Calc_float.mul (Calc_float.add twenty_float one_float) two_float))
 
 (* ************************************************************************** *)
 (*                                                                            *)
