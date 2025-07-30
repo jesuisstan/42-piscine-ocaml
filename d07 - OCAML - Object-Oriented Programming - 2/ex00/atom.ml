@@ -1,12 +1,4 @@
-(* ************************************************************************** *)
-(*                                                                            *)
-(*                               d07 - ex00                                   *)
-(*                                                                            *)
-(*   Virtual class: atom and concrete atoms                                   *)
-(*                                                                            *)
-(* ************************************************************************** *)
-
-class virtual atom = object
+class virtual atom = object (self)
   method virtual name : string
   method virtual symbol : string
   method virtual atomic_number : int
