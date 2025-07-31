@@ -1,5 +1,5 @@
-NAME=ex02
-SRC=ex02.ml
+NAME = ex02
+SRC = ex02.ml
 
 all: $(NAME)
 
@@ -7,7 +7,7 @@ $(NAME): $(SRC)
 	ocamlopt $(SRC) -o $(NAME)
 
 clean:
-	rm -f $(NAME) *.cmx *.cmi *.o *.exe
+	rm -f *.cmx *.cmi *.o $(NAME)
 
 fclean: clean
 

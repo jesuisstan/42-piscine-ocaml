@@ -1,6 +1,6 @@
 module Watchtower = struct
   type hour = int
-  let zero : hour = 0
+  let zero : hour = 12
   let add (h1 : hour) (h2 : hour) : hour =
     let sum = (h1 + h2) mod 12 in
     if sum = 0 then 12 else sum
@@ -18,22 +18,4 @@ let () =
   Printf.printf "sub 3 5 = %d\n" (sub 3 5);     (* 10 *)
   Printf.printf "sub 12 1 = %d\n" (sub 12 1);   (* 11 *)
   Printf.printf "add 12 12 = %d\n" (add 12 12); (* 12 *)
-  Printf.printf "zero = %d\n" zero
-
-(* ************************************************************************** *)
-(*                                                                            *)
-(* Compilation and execution instructions:                                    *)
-(*                                                                            *)
-(* $ ocamlopt ex00.ml -o ex00                                                 *)
-(* $ ./ex00                                                                  *)
-(*                                                                            *)
-(* Standard OCaml interpreter:                                                *)
-(* $ ocaml                                                                     *)
-(* # #use "ex00.ml";;                                                         *)
-(* # open Watchtower;;                                                          *)
-(* # add 10 3;;                                                                *)
-(* - : int = 1                                                                *)
-(* # add 6 6;;                                                                *)
-(* - : int = 12                                                               *)
-(*                                                                            *)
-(* ************************************************************************** *) 
+  Printf.printf "zero = %d\n" zero 

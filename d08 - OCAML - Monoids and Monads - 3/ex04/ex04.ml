@@ -1,35 +1,35 @@
 module Set = struct
   type 'a t = 'a list  (* Simple list-based implementation *)
   
-  let return x = [x]
+  let return (element : 'a) : 'a t = [element]
   
-  let bind s f =
-    List.flatten (List.map f s)
+  let bind (set : 'a t) (function_to_apply : 'a -> 'b t) : 'b t =
+    List.flatten (List.map function_to_apply set)
   
-  let union s1 s2 =
+  let union (set1 : 'a t) (set2 : 'a t) : 'a t =
     let rec remove_duplicates = function
       | [] -> []
-      | x :: xs -> x :: remove_duplicates (List.filter (fun y -> y <> x) xs)
+      | element :: rest -> element :: remove_duplicates (List.filter (fun y -> y <> element) rest)
     in
-    remove_duplicates (s1 @ s2)
+    remove_duplicates (set1 @ set2)
   
-  let inter s1 s2 =
-    List.filter (fun x -> List.mem x s2) s1
+  let inter (set1 : 'a t) (set2 : 'a t) : 'a t =
+    List.filter (fun element -> List.mem element set2) set1
   
-  let diff s1 s2 =
-    List.filter (fun x -> not (List.mem x s2)) s1
+  let diff (set1 : 'a t) (set2 : 'a t) : 'a t =
+    List.filter (fun element -> not (List.mem element set2)) set1
   
-  let filter s pred =
-    List.filter pred s
+  let filter (set : 'a t) (predicate : 'a -> bool) : 'a t =
+    List.filter predicate set
   
-  let foreach s f =
-    List.iter f s
+  let foreach (set : 'a t) (function_to_execute : 'a -> unit) : unit =
+    List.iter function_to_execute set
   
-  let for_all s pred =
-    List.for_all pred s
+  let for_all (set : 'a t) (predicate : 'a -> bool) : bool =
+    List.for_all predicate set
   
-  let exists s pred =
-    List.exists pred s
+  let exists (set : 'a t) (predicate : 'a -> bool) : bool =
+    List.exists predicate set
 end
 
 (* Test block *)
@@ -77,24 +77,4 @@ let () =
   let difference = diff s4 (return 2) in
   Printf.printf "Difference with {2}: ";
   foreach difference (fun x -> Printf.printf "%d " x);
-  print_endline ""
-
-(* ************************************************************************** *)
-(*                                                                            *)
-(* Compilation and execution instructions:                                    *)
-(*                                                                            *)
-(* $ ocamlopt ex04.ml -o ex04                                                 *)
-(* $ ./ex04                                                                  *)
-(*                                                                            *)
-(* Standard OCaml interpreter:                                                *)
-(* $ ocaml                                                                     *)
-(* # #use "ex04.ml";;                                                         *)
-(* # open Set;;                                                                *)
-(* # let s1 = return 1;;                                                       *)
-(* val s1 : int Set.t = [1]                                                   *)
-(* # let s2 = return 2;;                                                       *)
-(* val s2 : int Set.t = [2]                                                   *)
-(* # union s1 s2;;                                                              *)
-(* - : int Set.t = [1; 2]                                                     *)
-(*                                                                            *)
-(* ************************************************************************** *) 
+  print_endline "" 
